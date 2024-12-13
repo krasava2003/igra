@@ -61,7 +61,7 @@ def computer_move(board):
             if (r + c) % 2 != 0 and board[r][c] == 0:
                 board[r][c] = -1
                 check_and_mark_squares(board, -1)
-                return board  # Завершаем выполнение, после одного хода компьютера
+                return board
     return board
 
 def initialize_game():
