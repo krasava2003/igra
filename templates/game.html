@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect the Dots</title>
+    <style>
+        .board {
+            font-family: monospace;
+            line-height: 1.5;
+        }
+        .board td {
+            padding: 5px;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Игра "Соедини точки"</h1>
+    {% if not game_over %}
+        <h2>Сделайте свой ход</h2>
+        <form method="POST" action="/play">
+            <label for="move">Введите ваш ход (строка, столбец): </label>
+            <input type="text" name="move" id="move" required>
+            <button type="submit">Отправить ход</button>
+        </form>
+    {% else %}
+        <h2>Игра завершена!</h2>
+        <p>Очки человека: {{ human_score }}</p>
+        <p>Очки компьютера: {{ computer_score }}</p>
+        <p>{% if human_score > computer_score %}Вы выиграли!{% else %}Компьютер выиграл!{% endif %}</p>
+        <a href="/reset">Играть заново</a>
+    {% endif %}
+
+    <h2>Игровое поле:</h2>
+    <table class="board">
+        {% for row in board %}
+            <tr>
+                {% for cell in row %}
+                    <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
