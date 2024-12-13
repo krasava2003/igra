@@ -56,7 +56,6 @@ def count_scores(board):
     return human_score, computer_score
 
 def computer_move(board):
-    """Функция для хода компьютера. Компьютер делает только один ход."""
     for r in range(3, 10):
         for c in range(3, 10):
             if (r + c) % 2 != 0 and board[r][c] == 0:
@@ -66,7 +65,6 @@ def computer_move(board):
     return board
 
 def initialize_game():
-    """Инициализация новой игры"""
     board = [[0 for _ in range(13)] for _ in range(13)]
     for r in range(1, 13):
         for c in range(1, 13):
