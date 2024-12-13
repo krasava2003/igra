@@ -44,7 +44,7 @@ class CondotApp(App):
         self.submit_button.bind(on_press=self.make_move)
         self.layout.add_widget(self.submit_button)
 
-        # Add a restart button
+
         self.restart_button = Button(text="Restart Game")
         self.restart_button.bind(on_press=self.restart_game)
         self.layout.add_widget(self.restart_button)

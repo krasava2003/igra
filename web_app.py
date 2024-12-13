@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
-# Глобальная переменная для хранения состояния игры
 current_game = None
 
 def print_board(board):
@@ -79,7 +78,6 @@ def initialize_game():
 def index():
     global current_game
 
-    # Инициализация новой игры, если её нет
     if current_game is None:
         current_game = initialize_game()
 
@@ -99,15 +97,12 @@ def play():
 
     board, human_score, computer_score, game_over = current_game
 
-    # Человек может ходить на любую клетку, даже если она занята
     if board[x][y] == 0:
         board[x][y] = 1
         check_and_mark_squares(board, 1)
 
-    # Ход компьютера (только один)
     board = computer_move(board)
 
-    # Проверка, завершена ли игра
     game_over = check_all_squares_closed(board)
 
     human_score, computer_score = count_scores(board)
@@ -121,10 +116,8 @@ def play():
 def reset():
     global current_game
 
-    # Очистить текущую игру и начать новую
     current_game = initialize_game()
 
-    # Перенаправление на главную страницу с новой игрой
     return redirect('/')
 
 if __name__ == '__main__':
